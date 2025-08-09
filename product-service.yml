@@ -3,18 +3,22 @@ server:
 
 spring:
   application:
-    name: product-service
+    name: order-service
   datasource:
-    url: jdbc:mysql://localhost:3306/inventorydb
+    url: jdbc:mysql://localhost:3306/orderdb
     username: root
     password: winny@1717
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+feign:
+  hystrix:
+    enabled: true
